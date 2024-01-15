@@ -1,0 +1,259 @@
+/**
+ * Reset box-sizing and basic styles
+ *
+ * @format
+ */
+/* basic formatting */
+html {
+  box-sizing: border-box;
+  font-family: Dosis;
+  font-size: 16px;
+  color: #1e4040;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: #71d99e;
+}
+
+main,
+aside {
+  padding: 20px 5%;
+}
+footer p {
+  color: white;
+}
+/* 
+========================================
+CSS GRID OUTER STYLES
+======================================== */
+
+.outer-grid {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 70px 1fr;
+  grid-template-columns: 90px 1fr;
+  grid-template-areas:
+    "header header "
+    "inner-grid inner-grid";
+}
+.outer-grid-expanded {
+  grid-template-areas:
+    "header header "
+    "nav inner-grid";
+}
+.hide-nav {
+  display: none;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+p {
+  margin-bottom: 20px;
+  margin: 0;
+}
+/* 
+========================================
+Header styles
+======================================== */
+header {
+  grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #1e4040;
+  color: #71d99e;
+}
+.left-header {
+  display: flex;
+  align-items: center;
+}
+.fa-solid {
+  margin-right: 10px;
+}
+.fa-bars:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.right-header {
+  display: flex;
+}
+.header-link {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  align-items: center;
+}
+.header-link i {
+  font-size: 0.8rem;
+}
+
+.nav-link {
+  display: flex;
+  flex-direction: column;
+  color: #1e4040;
+  align-items: center;
+  margin-top: 20px;
+}
+.nav-link:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.nav-link a {
+  color: #1e4040;
+  text-decoration: none;
+}
+
+/* 
+========================================
+Header Styles
+======================================== */
+nav {
+  grid-area: nav;
+  padding-top: 20px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* 
+========================================
+CSS GRID OUTER STYLES
+======================================== */
+
+/* 
+========================================
+Inner Grid styles
+======================================== */
+
+.inner-grid {
+  overflow-y: scroll;
+  display: grid;
+
+  grid-area: inner-grid;
+  grid-template-rows: 1fr auto 60px;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "alias-main"
+    "alias-aside"
+    "alias-footer";
+}
+main {
+  grid-area: alias-main;
+}
+aside {
+  grid-area: alias-aside;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+footer {
+  background-color: #1e4040;
+  color: #71d99e;
+  grid-area: alias-footer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+img {
+  border-radius: 5px;
+  box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+}
+
+.collage {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 40px 1fr 40px 1fr;
+  height: 550px;
+  align-items: center;
+}
+
+.collage-1 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  z-index: 1;
+  transform: rotate(-3deg);
+}
+.collage-2 {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  z-index: 2;
+  box-shadow: 2px 4px 10px 2px rgba(0, 0, 0, 0.5);
+}
+.collage-3 {
+  transform: rotate(3deg);
+  grid-column-start: 4;
+  grid-column-end: 6;
+  z-index: 1;
+}
+
+.collage * {
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+/* 
+========================================
+Responsible Styles
+======================================== */
+@media (min-width: 576px) {
+  nav {
+    display: block !important;
+  }
+  .outer-grid {
+    grid-template-areas:
+      "header header "
+      "nav inner-grid";
+  }
+
+  .fa-bars {
+    display: none !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .inner-grid {
+    grid-template-rows: 1fr 60px;
+    grid-template-columns: minmax(auto, 700px) 1fr;
+    grid-template-areas:
+      "alias-main alias-aside"
+      "alias-footer alias-footer";
+  }
+  aside {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+@media (min-width: 1440px) {
+  .outer-grid {
+    grid-template-columns: 1fr 950px 1fr;
+    grid-template-areas:
+      "header header header "
+      "nav inner-grid inner-grid";
+  }
+  header {
+    display: grid;
+    grid-template-columns: 1fr 950px 1fr;
+    grid-template-areas: "alias-lh . alias-rh";
+  }
+  .left-header {
+    grid-area: alias-lh;
+    justify-self: end;
+  }
+  .right-header {
+    grid-area: alias-rh;
+    justify-self: start;
+  }
+  nav {
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 20px;
+  }
+}
